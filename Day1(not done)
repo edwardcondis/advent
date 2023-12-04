@@ -1,0 +1,37 @@
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string filePath = "C:\\Users\\Edward\\Desktop\\input.txt";
+        int totalSum = 0;
+
+        try
+        {
+            string[] lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+                MatchCollection digitMatches = Regex.Matches(line, @"\d");
+
+                if (digitMatches.Count > 0)
+                {
+                    char firstDigit = digitMatches[0].Value[0];
+                    char lastDigit = digitMatches[digitMatches.Count - 1].Value[0];
+
+                    Console.WriteLine($"{firstDigit}{lastDigit}");
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+        catch
+        {
+           
+    }
+}
